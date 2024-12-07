@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 20:36:58 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/07 18:12:56 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/07 19:15:33 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include "libft.h"
-
-volatile sig_atomic_t	g_flag = 0;
 
 static void	sigusr_handler(int signum)
 {

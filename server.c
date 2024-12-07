@@ -6,13 +6,13 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 20:37:04 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/07 18:17:24 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/07 19:23:46 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <signal.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include <sys/types.h>
 #include "libft.h"
 
 void	sigusr_handler(int signum, siginfo_t *siginfo, void *ctx)
@@ -29,11 +29,11 @@ void	sigusr_handler(int signum, siginfo_t *siginfo, void *ctx)
 		if (c == '\0')
 			ft_putchar_fd('\n', 1);
 		else
-			ft_putchar_fd('c', 1);
+			ft_putchar_fd(c, 1);
 		c = 0;
 		i = 0;
 	}
-	usleep(5000);
+	usleep(100);
 	kill(siginfo->si_pid, SIGUSR1);
 }
 
