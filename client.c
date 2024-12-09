@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 20:36:58 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/08 20:24:57 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/09 17:13:12 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	sigusr_handler(int signum)
 
 static void	exit_on_error(char *msg)
 {
-	ft_putstr_fd(msg, STDERR_FILENO);
+	ft_dprintf(STDERR_FILENO, "%s\n", msg);
 	exit(EXIT_FAILURE);
 }
 

@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 20:36:58 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/09 13:40:16 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/09 17:13:11 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	sigusr_handler(int signum)
 
 static void	exit_on_error(char *msg)
 {
-	ft_putstr_fd(msg, STDERR_FILENO);
+	ft_dprintf(STDERR_FILENO, "%s\n", msg);
 	exit(EXIT_FAILURE);
 }
 
@@ -79,6 +79,6 @@ int	main(int argc, char **argv)
 	send_byte(pid, '\0');
 	while (!(g_flag & 0b10))
 		usleep(1);
-	ft_putstr_fd("Message sent successfully.\n", STDOUT_FILENO);
+	ft_dprintf(STDOUT_FILENO, "Message sent successfully.\n");
 	return (0);
 }
