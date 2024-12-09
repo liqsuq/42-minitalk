@@ -43,8 +43,9 @@ run_test() {
     local message=$2
     local start_time=$(date +%s.%6N)
     ./client $pid "$message" &> /dev/null
+    local retval=$?
     local end_time=$(date +%s.%6N)
-    if [ $? -eq 0 ]; then
+    if [ $retval -eq 0 ]; then
         echo "⭕ OK!!! ($(measure_time $start_time $end_time))"
     else
         echo "❌ NG..."
