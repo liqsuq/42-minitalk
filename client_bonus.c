@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 20:36:58 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/08 20:24:56 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/09 13:40:16 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	main(int argc, char **argv)
 	while (argv[2][i] != '\0')
 		send_byte(pid, argv[2][i++]);
 	send_byte(pid, '\0');
-	while (g_flag & 0b10)
+	while (!(g_flag & 0b10))
 		usleep(1);
 	ft_putstr_fd("Message sent successfully.\n", STDOUT_FILENO);
 	return (0);
