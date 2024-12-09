@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 20:37:04 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/09 13:00:09 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/09 13:45:31 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	sigusr_handler(int signum, siginfo_t *siginfo, void *ctx)
 	{
 		if (c == '\0')
 		{
-			write(STDOUT_FILENO, "\n", 1);
+			write(STDOUT_FILENO, "\nWaiting for message ...\n", 25);
 			kill(siginfo->si_pid, SIGUSR2);
 		}
 		else
@@ -59,6 +59,7 @@ int	main(void)
 		exit_on_error("[ERR] sigaction(SIGUSR1, ...) failed.\n");
 	if (sigaction(SIGUSR2, &sigact, NULL) == -1)
 		exit_on_error("[ERR] sigaction(SIGUSR2, ...) failed.\n");
+	write(STDOUT_FILENO, "Waiting for message ...\n", 24);
 	while (1)
 		pause();
 	return (0);
