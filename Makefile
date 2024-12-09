@@ -25,10 +25,10 @@ $(LFTLIB):
 
 clean:
 	make -C $(LFTDIR) clean
-	rm -f $(OBJECT)
+	rm -f $(OBJECT) $(BOBJECT)
 
 fclean:
 	make -C $(LFTDIR) fclean
-	rm -f $(NAME)
+	rm -f $(NAME) $(BNAME)
 
 re: fclean all
