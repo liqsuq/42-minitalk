@@ -3,38 +3,52 @@
 FG='\e[32m'
 NC='\e[0m'
 
+CLIENT="./client"
+
+usage() {
+    echo "Usage: $0 [-b] <PID>"
+}
+
+while getopts b OPT
+do
+    case $OPT in
+        b)  CLIENT="./client_bonus"; shift;;
+        *)  usage;;
+    esac
+done
+
 if [ $# -ne 1 ]; then
-	echo "Usage: $0 <PID>"
-	exit 1
+    echo "Usage: $0 [-b] <PID>"
+    exit 1
 fi
 
 if [ ! -f ./client ]; then
-	echo "client not found"
-	exit 1
+    echo "client not found"
+    exit 1
 fi
 
 if ! [[ $1 =~ ^[0-9]+$ ]]; then
-	echo "Invalid PID"
-	exit 1
+    echo "Invalid PID"
+    exit 1
 fi
 
 measure_time() {
-	local start_time=$1
-	local end_time=$2
-	echo "$(echo "$end_time - $start_time"|bc) seconds"
+    local start_time=$1
+    local end_time=$2
+    echo "$(echo "$end_time - $start_time"|bc) seconds"
 }
 
 run_test() {
-	local pid=$1
-	local message=$2
-	local start_time=$(date +%s.%6N)
-	./client $pid "$message" &> /dev/null
-	local end_time=$(date +%s.%6N)
-	if [ $? -eq 0 ]; then
-		echo "⭕ OK!!! ($(measure_time $start_time $end_time))"
-	else
-		echo "❌ NG..."
-	fi
+    local pid=$1
+    local message=$2
+    local start_time=$(date +%s.%6N)
+    ./client $pid "$message" &> /dev/null
+    local end_time=$(date +%s.%6N)
+    if [ $? -eq 0 ]; then
+        echo "⭕ OK!!! ($(measure_time $start_time $end_time))"
+    else
+        echo "❌ NG..."
+    fi
 }
 
 messages=(
@@ -54,8 +68,8 @@ messages=(
 )
 
 for message in "${messages[@]}"; do
-	echo -e "${FG}Message: ${NC}$message"
-	run_test $1 "$message"
+    echo -e "${FG}Message: ${NC}$message"
+    run_test $1 "$message"
 done
 
 echo "================================"
