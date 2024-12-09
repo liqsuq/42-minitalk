@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 20:37:04 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/08 20:25:16 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/09 13:00:21 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ void	sigusr_handler(int signum, siginfo_t *siginfo, void *ctx)
 {
 	static char	c;
 	static int	i;
-	char		nl;
 
-	nl = '\n';
 	(void)ctx;
 	if (signum == SIGUSR1)
 		c |= 0b000000001 << i;
@@ -29,9 +27,9 @@ void	sigusr_handler(int signum, siginfo_t *siginfo, void *ctx)
 	if (i == 8)
 	{
 		if (c == '\0')
-			ft_putchar_fd(nl, STDOUT_FILENO);
+			write(STDOUT_FILENO, "\n", 1);
 		else
-			ft_putchar_fd(c, STDOUT_FILENO);
+			write(STDOUT_FILENO, &c, 1);
 		c = 0;
 		i = 0;
 	}
