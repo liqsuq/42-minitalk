@@ -42,7 +42,7 @@ run_test() {
     local pid=$1
     local message=$2
     local start_time=$(date +%s.%6N)
-    ./client $pid "$message" &> /dev/null
+    $CLIENT $pid "$message" &> /dev/null
     local retval=$?
     local end_time=$(date +%s.%6N)
     if [ $retval -eq 0 ]; then
