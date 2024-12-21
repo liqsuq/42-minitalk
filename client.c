@@ -6,7 +6,7 @@
 /*   By: kadachi <kadachi@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 20:36:58 by kadachi           #+#    #+#             */
-/*   Updated: 2024/12/09 17:13:12 by kadachi          ###   ########.fr       */
+/*   Updated: 2024/12/15 18:51:03 by kadachi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	main(int argc, char **argv)
 	if (argc != 3)
 		exit_on_error("Usage: ./client {PID} {msg}\n");
 	pid = ft_atoi(argv[1]);
-	if (pid <= 0)
+	if (pid <= 1)
 		exit_on_error("Usage: ./client {PID} {msg}\n");
 	sigact.sa_handler = sigusr_handler;
 	sigact.sa_flags = 0;
