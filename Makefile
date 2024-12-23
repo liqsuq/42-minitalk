@@ -27,7 +27,7 @@ $(LFTDIR):
 	git clone https://github.com/liqsuq/libft
 
 clean:
-	$(MAKE) -C $(LFTDIR) clean
+	-$(MAKE) -C $(LFTDIR) clean
 	$(RM) $(OBJECT) $(BOBJECT)
 
 fclean: clean
